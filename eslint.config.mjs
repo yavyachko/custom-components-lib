@@ -3,16 +3,17 @@ import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import prettierConfig from "eslint-config-prettier";
 import pluginPrettier from "eslint-plugin-prettier";
+import pluginImport from "eslint-plugin-import";
 import { globalIgnores } from "eslint/config";
 
 export default [
   pluginJs.configs.recommended,
   globalIgnores([
-		"node_modules/", 
-		"node_modules/*",
+    "node_modules/",
+    "node_modules/*",
     "dist",
     "dist/*"
-	]),
+  ]),
   {
     files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {
@@ -27,10 +28,27 @@ export default [
     plugins: {
       "@typescript-eslint": tseslint.plugin,
       prettier: pluginPrettier,
+      import: pluginImport,
     },
     rules: {
       ...tseslint.configs.recommended.rules,
       "prettier/prettier": "error",
+      "import/order": [
+        "error",
+        {
+          "groups": [
+            "builtin",
+            "external",
+            "internal",
+            ["parent", "sibling", "index"]
+          ],
+          "alphabetize": { "order": "asc", "caseInsensitive": true },
+          "newlines-between": "always"
+        }
+      ],
+      "@typescript-eslint/no-explicit-any": "error",
+      "eqeqeq": ["error", "always"],
+      "keyword-spacing": ["error", { "before": true, "after": true }],
     },
   },
   {
@@ -38,9 +56,25 @@ export default [
     languageOptions: { globals: globals.browser },
     plugins: {
       prettier: pluginPrettier,
+      import: pluginImport,
     },
     rules: {
       "prettier/prettier": "error",
+      "import/order": [
+        "error",
+        {
+          "groups": [
+            "builtin",
+            "external",
+            "internal",
+            ["parent", "sibling", "index"]
+          ],
+          "alphabetize": { "order": "asc", "caseInsensitive": true },
+          "newlines-between": "always"
+        }
+      ],
+      "eqeqeq": ["error", "always"],
+      "keyword-spacing": ["error", { "before": true, "after": true }],
     },
   },
   {
