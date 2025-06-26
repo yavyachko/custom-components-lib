@@ -1,65 +1,93 @@
+$primary-color: #1e40af;
+$primary-hover: #1d4ed8;
+$primary-active: #1e40af;
+$secondary-hover: transparentize($primary-hover, 0.8);
+$disabled-bg: #cbd5e1;
+$disabled-color: #64748b;
+
+@mixin button-size($padding) {
+  padding: $padding;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5em 1.5em;
   font-size: 1rem;
   font-weight: 500;
-  border: none;
   border-radius: 4px;
-  background-color: #2563eb;
-  color: #fff;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-
-  &:hover,
-  &:focus {
-    background-color: #1d4ed8;
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
-    outline: none;
-  }
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
 
   &:active {
-    background-color: #1e40af;
+    background-color: $primary-active;
   }
 
   &:disabled {
-    background-color: #cbd5e1;
-    color: #64748b;
-    cursor: not-allowed;
+    background-color: $disabled-bg;
+    color: $disabled-color;
     box-shadow: none;
+    cursor: not-allowed;
   }
 
-  &--primary {
-    background-color: #2563eb;
-    color: #fff;
+  &_contained,
+  &_outlined,
+  &_text {
+    @include button-size(1em 2em);
   }
 
-  &--secondary {
-    background-color: #f3f4f6;
-    color: #2563eb;
-    border: 1px solid #2563eb;
+  &_small {
+    @include button-size(0.5em 1.5em);
+  }
+
+  &_medium {
+    @include button-size(1em 2em);
+  }
+
+  &_large {
+    @include button-size(2em 3em);
+  }
+
+  &_contained {
+    background-color: $primary-color;
+    color: white;
+    border: none;
+
+    &:disabled:hover {
+      background-color: $secondary-hover;
+    }
 
     &:hover,
     &:focus {
-      background-color: #e0e7ef;
+      background-color: $primary-hover;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+      outline: none;
     }
   }
 
-  &--danger {
-    background-color: #ef4444;
-    color: #fff;
-
+  &_outlined {
+    background: none;
+    border: 1px solid $primary-color;
+    color: $primary-color;
     &:hover,
     &:focus {
-      background-color: #dc2626;
+      background-color: $secondary-hover;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+      outline: none;
     }
   }
 
-  &__icon {
-    margin-right: 0.5em;
-    display: inline-flex;
-    align-items: center;
-    font-size: 1.2em;
+  &_text {
+    background: none;
+    color: $primary-color;
+    border: none;
+    &:hover,
+    &:focus {
+      background-color: $secondary-hover;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+      outline: none;
+    }
   }
 }
