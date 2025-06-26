@@ -6,10 +6,19 @@ const meta: Meta<ButtonProps> = {
   title: "Components/Button",
   component: Button,
   argTypes: {
-    children: { control: "text" },
-    onClick: { action: "clicked" },
-    disabled: { control: "boolean" },
-    variant: { control: "select", options: ["primary", "secondary", "danger"] },
+    children: { control: "text", description: "Button content" },
+    onClick: { action: "clicked", description: "Button callback" },
+    disabled: { control: "boolean", description: "Button accessability" },
+    variant: {
+      control: "select",
+      description: "Button styling",
+      options: ["contained", "text", "outlined"],
+    },
+    size: {
+      control: "select",
+      description: "Size of button (padding to inner content)",
+      options: ["small", "medium", "large"],
+    },
   },
 };
 
@@ -20,23 +29,6 @@ type Story = StoryObj<ButtonProps>;
 export const Primary: Story = {
   args: {
     children: "Primary Button",
-    variant: "primary",
     disabled: false,
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    children: "Secondary Button",
-    variant: "secondary",
-    disabled: false,
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    children: "Disabled Button",
-    variant: "primary",
-    disabled: true,
   },
 };
