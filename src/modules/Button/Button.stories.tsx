@@ -26,9 +26,56 @@ export default meta;
 
 type Story = StoryObj<ButtonProps>;
 
-export const Primary: Story = {
+export const Contained: Story = {
   args: {
-    children: "Primary Button",
+    children: "Contained Button",
+    variant: "contained",
+    size: "medium",
+    disabled: false,
+  },
+};
+
+export const Text: Story = {
+  args: {
+    children: "Text Button",
+    variant: "text",
+    size: "medium",
+    disabled: false,
+  },
+};
+
+export const Outlined: Story = {
+  args: {
+    children: "Outlined Button",
+    variant: "outlined",
+    size: "medium",
+    disabled: false,
+  },
+};
+
+export const Small: Story = {
+  args: {
+    children: "Small Button",
+    variant: "contained",
+    size: "small",
+    disabled: false,
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    children: "Medium Button",
+    variant: "contained",
+    size: "medium",
+    disabled: false,
+  },
+};
+
+export const Large: Story = {
+  args: {
+    children: "Large Button",
+    variant: "contained",
+    size: "large",
     disabled: false,
   },
 };
