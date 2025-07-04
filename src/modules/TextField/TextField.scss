@@ -1,0 +1,231 @@
+.textfield {
+  // Цветовые переменные
+  --textfield-bg: #232323;
+  --textfield-bg-contained: #444;
+  --textfield-bg-disabled: #2a2a2a;
+  --textfield-bg-error: #2a1a1a;
+  --textfield-border: #444;
+  --textfield-border-outlined: #888;
+  --textfield-border-error: #d32f2f;
+  --textfield-border-disabled: #333;
+  --textfield-label: #aaa;
+  --textfield-label-focus: #1976d2;
+  --textfield-label-disabled: #555;
+  --textfield-label-error: #d32f2f;
+  --textfield-input: #fff;
+  --textfield-input-disabled: #aaa;
+  --textfield-error: #d32f2f;
+
+  position: relative;
+  margin: 24px 0;
+  font-family: inherit;
+
+  &__input {
+    width: 100%;
+    padding: 20px 12px 8px 12px;
+    font-size: 16px;
+    outline: none;
+    background: none;
+    border-radius: 6px;
+    border: 1px solid var(--textfield-border);
+    color: var(--textfield-input);
+    background: var(--textfield-bg);
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus {
+      border-color: var(--textfield-label-focus);
+      background: var(--textfield-bg);
+    }
+
+    &:disabled {
+      color: var(--textfield-input-disabled);
+      background: var(--textfield-bg-disabled);
+      border-color: var(--textfield-border-disabled);
+      cursor: not-allowed;
+    }
+
+    &.textfield__input_outlined {
+      border: 2px solid var(--textfield-border-outlined);
+      background: none;
+      padding: 20px 12px 8px 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    &.textfield__input_contained {
+      border: none;
+      background: var(--textfield-bg-contained);
+      color: var(--textfield-input);
+    }
+
+    &.textfield__input_standart {
+      border: none;
+      border-bottom: 2px solid var(--textfield-border-outlined);
+      border-radius: 0;
+      background: transparent;
+    }
+
+    &.textfield__input_error {
+      border-color: var(--textfield-border-error) !important;
+      background: var(--textfield-bg-error);
+    }
+  }
+
+  &__label {
+    position: absolute;
+    left: 14px;
+    top: 22px;
+    font-size: 16px;
+    color: var(--textfield-label);
+    pointer-events: none;
+    padding: 0 4px;
+    transition: 0.2s;
+    z-index: 1;
+    background: none !important;
+
+    // Для outlined добавляем псевдоэлемент для "разрыва" рамки
+    &.textfield__label_outlined {
+      background: none !important;
+      z-index: 2;
+      padding: 0 4px;
+      left: 14px;
+      top: 22px;
+      position: absolute;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        right: -4px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 16px;
+        background: none !important;
+        z-index: -1;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  // Label for outlined variant
+  &__input.textfield__input_outlined:focus + &__label,
+  &__input.textfield__input_outlined:not(:placeholder-shown) + &__label {
+    top: 6px;
+    left: 10px;
+    font-size: 12px;
+    color: var(--textfield-label-focus);
+    background: none !important;
+    padding: 0 4px;
+
+    // outlined label сдвигается вверх и становится меньше
+    &.textfield__label_outlined {
+      top: 6px;
+      left: 10px;
+      font-size: 12px;
+      color: var(--textfield-label-focus);
+      background: none !important;
+      padding: 0 4px;
+
+      &::before {
+        background: none !important;
+      }
+    }
+  }
+  &__input.textfield__input_outlined + &__label.textfield__label_outlined {
+    background: none !important;
+  }
+  // Error state for outlined
+  &__input.textfield__input_outlined.textfield__input_error:focus
+    + &__label.textfield__label_outlined,
+  &__input.textfield__input_outlined.textfield__input_error:not(
+      :placeholder-shown
+    )
+    + &__label.textfield__label_outlined,
+  &__input.textfield__input_outlined.textfield__input_error
+    + &__label.textfield__label_outlined {
+    color: var(--textfield-label-error);
+
+    &::before {
+      background: none !important;
+    }
+  }
+
+  // Label for contained variant
+  &__input.textfield__input_contained:focus + &__label,
+  &__input.textfield__input_contained:not(:placeholder-shown) + &__label {
+    top: 6px;
+    left: 10px;
+    font-size: 12px;
+    color: var(--textfield-label-focus);
+    background: var(--textfield-bg-contained);
+    padding: 0 4px;
+  }
+  &__input.textfield__input_contained + &__label {
+    background: var(--textfield-bg-contained);
+  }
+  // Error state for contained
+  &__input.textfield__input_contained.textfield__input_error:focus + &__label,
+  &__input.textfield__input_contained.textfield__input_error:not(
+      :placeholder-shown
+    )
+    + &__label,
+  &__input.textfield__input_contained.textfield__input_error + &__label {
+    color: var(--textfield-label-error);
+    background: var(--textfield-bg-error);
+  }
+
+  // Label for standart variant
+  &__input.textfield__input_standart:focus + &__label,
+  &__input.textfield__input_standart:not(:placeholder-shown) + &__label {
+    top: 2px;
+    left: 0px;
+    font-size: 12px;
+    color: var(--textfield-label-focus);
+    background: transparent;
+    padding: 0 2px;
+  }
+  &__input.textfield__input_standart + &__label {
+    background: transparent;
+  }
+  // Error state for standart
+  &__input.textfield__input_standart.textfield__input_error:focus + &__label,
+  &__input.textfield__input_standart.textfield__input_error:not(
+      :placeholder-shown
+    )
+    + &__label,
+  &__input.textfield__input_standart.textfield__input_error + &__label {
+    color: var(--textfield-label-error);
+    background: transparent;
+  }
+
+  // Default label behavior
+  &__input:focus + &__label,
+  &__input:not(:placeholder-shown) + &__label {
+    top: 6px;
+    left: 10px;
+    font-size: 12px;
+    color: var(--textfield-label-focus);
+    background: var(--textfield-bg);
+    padding: 0 4px;
+  }
+
+  // Error state for default
+  &__input.textfield__input_error:focus + &__label,
+  &__input.textfield__input_error:not(:placeholder-shown) + &__label,
+  &__input.textfield__input_error + &__label {
+    color: var(--textfield-label-error);
+    background: var(--textfield-bg-error);
+  }
+
+  &__error {
+    color: var(--textfield-error);
+    font-size: 12px;
+    margin: 4px 0 0 12px;
+  }
+}
