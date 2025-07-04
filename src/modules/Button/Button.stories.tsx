@@ -6,10 +6,19 @@ const meta: Meta<ButtonProps> = {
   title: "Components/Button",
   component: Button,
   argTypes: {
-    children: { control: "text" },
-    onClick: { action: "clicked" },
-    disabled: { control: "boolean" },
-    variant: { control: "select", options: ["primary", "secondary", "danger"] },
+    children: { control: "text", description: "Button content" },
+    onClick: { action: "clicked", description: "Button callback" },
+    disabled: { control: "boolean", description: "Button accessability" },
+    variant: {
+      control: "select",
+      description: "Button styling",
+      options: ["contained", "text", "outlined"],
+    },
+    size: {
+      control: "select",
+      description: "Size of button (padding to inner content)",
+      options: ["small", "medium", "large"],
+    },
   },
 };
 
@@ -17,26 +26,56 @@ export default meta;
 
 type Story = StoryObj<ButtonProps>;
 
-export const Primary: Story = {
+export const Contained: Story = {
   args: {
-    children: "Primary Button",
-    variant: "primary",
+    children: "Contained Button",
+    variant: "contained",
+    size: "medium",
     disabled: false,
   },
 };
 
-export const Secondary: Story = {
+export const Text: Story = {
   args: {
-    children: "Secondary Button",
-    variant: "secondary",
+    children: "Text Button",
+    variant: "text",
+    size: "medium",
     disabled: false,
   },
 };
 
-export const Disabled: Story = {
+export const Outlined: Story = {
   args: {
-    children: "Disabled Button",
-    variant: "primary",
-    disabled: true,
+    children: "Outlined Button",
+    variant: "outlined",
+    size: "medium",
+    disabled: false,
+  },
+};
+
+export const Small: Story = {
+  args: {
+    children: "Small Button",
+    variant: "contained",
+    size: "small",
+    disabled: false,
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    children: "Medium Button",
+    variant: "contained",
+    size: "medium",
+    disabled: false,
+  },
+};
+
+export const Large: Story = {
+  args: {
+    children: "Large Button",
+    variant: "contained",
+    size: "large",
+    disabled: false,
   },
 };
