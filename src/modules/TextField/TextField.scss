@@ -1,5 +1,4 @@
 .textfield {
-  // Цветовые переменные
   --textfield-bg: #232323;
   --textfield-bg-contained: #444;
   --textfield-bg-disabled: #2a2a2a;
@@ -89,7 +88,6 @@
     z-index: 1;
     background: none !important;
 
-    // Для outlined добавляем псевдоэлемент для "разрыва" рамки
     &.textfield__label_outlined {
       background: none !important;
       z-index: 2;
@@ -113,7 +111,6 @@
     }
   }
 
-  // Label for outlined variant
   &__input.textfield__input_outlined:focus + &__label,
   &__input.textfield__input_outlined:not(:placeholder-shown) + &__label {
     top: 6px;
@@ -123,7 +120,6 @@
     background: none !important;
     padding: 0 4px;
 
-    // outlined label сдвигается вверх и становится меньше
     &.textfield__label_outlined {
       top: 6px;
       left: 10px;
@@ -140,7 +136,6 @@
   &__input.textfield__input_outlined + &__label.textfield__label_outlined {
     background: none !important;
   }
-  // Error state for outlined
   &__input.textfield__input_outlined.textfield__input_error:focus
     + &__label.textfield__label_outlined,
   &__input.textfield__input_outlined.textfield__input_error:not(
@@ -156,7 +151,6 @@
     }
   }
 
-  // Label for contained variant
   &__input.textfield__input_contained:focus + &__label,
   &__input.textfield__input_contained:not(:placeholder-shown) + &__label {
     top: 6px;
@@ -169,7 +163,7 @@
   &__input.textfield__input_contained + &__label {
     background: var(--textfield-bg-contained);
   }
-  // Error state for contained
+
   &__input.textfield__input_contained.textfield__input_error:focus + &__label,
   &__input.textfield__input_contained.textfield__input_error:not(
       :placeholder-shown
@@ -180,7 +174,6 @@
     background: var(--textfield-bg-error);
   }
 
-  // Label for standart variant
   &__input.textfield__input_standart:focus + &__label,
   &__input.textfield__input_standart:not(:placeholder-shown) + &__label {
     top: 2px;
@@ -193,7 +186,7 @@
   &__input.textfield__input_standart + &__label {
     background: transparent;
   }
-  // Error state for standart
+
   &__input.textfield__input_standart.textfield__input_error:focus + &__label,
   &__input.textfield__input_standart.textfield__input_error:not(
       :placeholder-shown
@@ -204,7 +197,6 @@
     background: transparent;
   }
 
-  // Default label behavior
   &__input:focus + &__label,
   &__input:not(:placeholder-shown) + &__label {
     top: 6px;
@@ -215,7 +207,6 @@
     padding: 0 4px;
   }
 
-  // Error state for default
   &__input.textfield__input_error:focus + &__label,
   &__input.textfield__input_error:not(:placeholder-shown) + &__label,
   &__input.textfield__input_error + &__label {

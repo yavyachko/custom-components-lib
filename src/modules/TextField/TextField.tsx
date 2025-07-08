@@ -13,16 +13,22 @@ export default function TextField({
   error,
   variant = "standart",
   classes,
+  id,
   ...props
 }: TextFieldProps) {
+  const inputId = id || React.useId();
+
   return (
     <div className="textfield">
       <input
+        id={inputId}
         className={`textfield__input textfield__input_${variant}${error ? " textfield__input_error" : ""} ${classes}`}
         placeholder=" "
         {...props}
       />
-      <label className="textfield__label">{label}</label>
+      <label className="textfield__label" htmlFor={inputId}>
+        {label}
+      </label>
       {error && <p className="textfield__error">{error}</p>}
     </div>
   );
